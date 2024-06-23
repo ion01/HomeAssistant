@@ -1,0 +1,139 @@
+
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+# Example configuration.yaml entry
+demo:
+
+
+
+
+envisalink:
+  host: 192.168.88.151
+  panel_type: DSC
+  user_name: user
+  password: 04682D
+  code: "9999"
+  port: 4025
+  evl_version: 4
+  keepalive_interval: 60
+  zonedump_interval: 30
+  timeout: 10
+  panic_type: Police
+  zones:
+    1:
+      name: "cam1"
+      type: "opening"
+    2:
+      name: "cam2"
+      type: "motion"
+  partitions:
+    1:
+      name: "Mix"
+
+shelly:
+  devices:
+      id: shelly25-3494546F088A
+      name: Shelly2.5_1
+      host: 192.168.88.145
+      port: 80 
+#####################################################
+sensor:
+  - platform: dahua_vto
+    name: dahua_vto
+    host: 192.168.88.146
+    username: admin
+    password: piiapiia2002
+    port: 80
+    scan_interval: 5
+    ###############################################
+camera:
+  - platform: ffmpeg
+    name: Dahua VTO
+    input: rtsp://admin:piiapiia2002@192.168.88.146:554/cam/realmonitor?channel=1&subtype=0
+
+
+ 
+
+
+#####cale director salvare snapshot#####################
+homeassistant:
+  allowlist_external_dirs:
+    - /config/tts
+ 
+################################################
+# Telegram Bot
+telegram_bot:
+  - platform: polling
+    api_key: "7238626775:AAHDQO5SN71AGYFfWUiVIbmuuAU_CD5FmIA"
+    allowed_chat_ids:
+      - 5895969058
+     
+# Notifier
+notify:
+  - platform: telegram
+    name: "Ion"
+    chat_id: 5895969058
+    
+  # senzor temperatura date fictive  
+    sensor:
+  - platform: template
+    sensors:
+      outside_temperature:
+        friendly_name: "Outside Temperature"
+        unit_of_measurement: "°C"
+        value_template: >
+          {% set base_temperature = range(10, 31) | random %}
+          {% set fluctuation = range(-2, 3) | random %}
+          {{ base_temperature + fluctuation }}
+##############################################################################3
+timer:
+  door_lock:
+    name: Door Lock
+    icon: mdi:timer
+
+lock:
+  - platform: template
+    name: Door Lock
+    value_template: "{{ not is_state('timer.door_lock', 'active') }}"
+    lock:
+    unlock:
+      - service: dahua_vto.open_door
+        data:
+          entity_id: sensor.dahua_vto
+          channel: 1
+          short_number: HA
+###############################################################################
+http:
+  base_url: https://controlacces.duckdns.org:8123
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+
+
+lets_encrypt:
+  accept_terms: true
+  certfile: fullchain.pem
+  keyfile: privkey.pem
+token: "2cb1df61-1f86-4be3-81ec-aebb426f7739"
+domains:
+  - "controlacces.duckdns.org"
+aliases: []
+
+
+
+
+
+
+ 
+
+    
+
+
+

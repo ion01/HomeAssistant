@@ -1,0 +1,6 @@
+open_gate:
+  alias: Deschide Poarta
+  sequence:
+    - service: lock.unlock
+      data:
+        entity_id: lock.door_lock

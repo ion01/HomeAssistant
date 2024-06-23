@@ -1,0 +1,62 @@
+2024-06-22 04:16:35.420 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration dahua_vto which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2024-06-22 04:16:35.422 WARNING (SyncWorker_0) [homeassistant.loader] We found a custom integration hacs which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2024-06-22 04:16:38.863 ERROR (MainThread) [homeassistant.config] Platform error: notify - No module named 'homeassistant.components.template.notify'
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/config.py", line 1440, in _async_load_and_validate_platform_integration
+    platform = await p_integration.integration.async_get_platform(domain)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/src/homeassistant/homeassistant/loader.py", line 1085, in async_get_platform
+    platforms = await self.async_get_platforms((platform_name,))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/src/homeassistant/homeassistant/loader.py", line 1162, in async_get_platforms
+    import_future.result()
+  File "/usr/src/homeassistant/homeassistant/loader.py", line 1132, in async_get_platforms
+    await self.hass.async_add_import_executor_job(
+  File "/usr/local/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/src/homeassistant/homeassistant/loader.py", line 1075, in _load_platforms
+    platform_name: self._load_platform(platform_name)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/src/homeassistant/homeassistant/loader.py", line 1249, in _load_platform
+    cache[full_name] = self._import_platform(platform_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/src/homeassistant/homeassistant/loader.py", line 1281, in _import_platform
+    return importlib.import_module(f"{self.pkg_path}.{platform_name}")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/src/homeassistant/homeassistant/util/loop.py", line 131, in protected_loop_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'homeassistant.components.template.notify'
+2024-06-22 04:16:42.506 WARNING (MainThread) [homeassistant.helpers.frame] Detected that custom integration 'hacs' accesses hass.components.frontend. This is deprecated and will stop working in Home Assistant 2024.9, it should be updated to import functions used from frontend directly at custom_components/hacs/frontend.py, line 68: hass.components.frontend.async_register_built_in_panel(, please create a bug report at https://github.com/hacs/integration/issues
+2024-06-22 04:16:43.889 WARNING (MainThread) [homeassistant.helpers.frame] Detected that custom integration 'hacs' accesses hass.helpers.event. This is deprecated and will stop working in Home Assistant 2024.11, it should be updated to import functions used from event directly at custom_components/hacs/base.py, line 642: self.hass.helpers.event.async_track_time_interval(, please create a bug report at https://github.com/hacs/integration/issues
+2024-06-22 04:17:06.940 WARNING (MainThread) [homeassistant.helpers.service] Referenced entities timer.door_lock are missing or not currently available
+2024-06-22 04:23:07.867 WARNING (MainThread) [homeassistant.helpers.service] Referenced entities timer.door_lock are missing or not currently available
+2024-06-22 04:23:34.102 WARNING (MainThread) [homeassistant.helpers.service] Referenced entities timer.door_lock are missing or not currently available
+2024-06-22 04:23:50.016 WARNING (MainThread) [homeassistant.helpers.service] Referenced entities timer.door_lock are missing or not currently available
+2024-06-22 09:17:23.965 WARNING (MainThread) [homeassistant.components.http.ban] Login attempt or request with invalid authentication from 192.168.88.77 (192.168.88.77). Requested URL: '/api/websocket'. (Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36)
+2024-06-22 16:24:54.125 ERROR (MainThread) [homeassistant.components.hassio.handler] Client error on /ingress/validate_session request 0, message='Attempt to decode JSON with unexpected mimetype: text/plain; charset=utf-8', url=URL('http://172.30.32.2/ingress/validate_session')
+2024-06-22 16:24:54.125 ERROR (MainThread) [homeassistant.components.hassio] Failed to to call /ingress/validate_session - 
+2024-06-22 16:24:58.097 WARNING (MainThread) [homeassistant.helpers.service] Referenced entities timer.door_lock are missing or not currently available
+2024-06-22 16:27:29.728 WARNING (MainThread) [homeassistant.helpers.service] Referenced entities timer.door_lock are missing or not currently available
+2024-06-22 16:30:23.690 WARNING (MainThread) [homeassistant.helpers.service] Referenced entities timer.door_lock are missing or not currently available
+2024-06-22 20:43:29.762 WARNING (MainThread) [homeassistant.helpers.service] Referenced entities timer.door_lock are missing or not currently available
+2024-06-22 20:43:55.907 WARNING (MainThread) [homeassistant.helpers.service] Referenced entities timer.door_lock are missing or not currently available
+2024-06-22 20:54:24.745 WARNING (MainThread) [homeassistant.helpers.service] Referenced entities timer.door_lock are missing or not currently available
+2024-06-22 23:38:38.218 WARNING (MainThread) [homeassistant.helpers.service] Referenced entities timer.door_lock are missing or not currently available
+2024-06-22 23:39:01.624 WARNING (MainThread) [homeassistant.helpers.service] Referenced entities timer.door_lock are missing or not currently available
+2024-06-23 00:55:12.461 WARNING (MainThread) [homeassistant.helpers.service] Referenced entities timer.door_lock are missing or not currently available
+2024-06-23 01:11:08.671 WARNING (MainThread) [homeassistant.components.telegram_bot] Status code 401 (retry #1) loading http://192.168.88.146/cgi-bin/snapshot.cgi
+2024-06-23 01:11:09.712 WARNING (MainThread) [homeassistant.components.telegram_bot] Status code 401 (retry #2) loading http://192.168.88.146/cgi-bin/snapshot.cgi
+2024-06-23 01:11:10.759 WARNING (MainThread) [homeassistant.components.telegram_bot] Status code 401 (retry #3) loading http://192.168.88.146/cgi-bin/snapshot.cgi
+2024-06-23 01:11:11.781 WARNING (MainThread) [homeassistant.components.telegram_bot] Status code 401 (retry #4) loading http://192.168.88.146/cgi-bin/snapshot.cgi
+2024-06-23 01:11:12.814 WARNING (MainThread) [homeassistant.components.telegram_bot] Status code 401 (retry #5) loading http://192.168.88.146/cgi-bin/snapshot.cgi
+2024-06-23 01:11:12.814 WARNING (MainThread) [homeassistant.components.telegram_bot] Can't load data in http://192.168.88.146/cgi-bin/snapshot.cgi after 5 retries
+2024-06-23 01:11:12.814 ERROR (MainThread) [homeassistant.components.telegram_bot] Can't send file with kwargs: {'authentication': 'bearer_token', 'url': 'http://192.168.88.146/cgi-bin/snapshot.cgi', 'username': 'admin', 'password': 'piiapiia2002', 'caption': 'poarta'}
+2024-06-23 03:03:38.815 ERROR (MainThread) [homeassistant.components.automation] Automation with alias 'New automation' could not be validated and has been disabled: extra keys not allowed @ data['automation']. Got [{'alias': 'Dahua VTO Call Notification', 'trigger': {'platform': 'event', 'event_type': 'dahua_vto', 'event_data': {'Code': 'BackKeyLight'}}, 'action': [{'service': 'camera.snapshot', 'data': {'entity_id': 'camera.dahua_vto', 'filename': '/config/www/snapshot.jpg'}}, {'delay': '00:00:02'}, {'service': 'notify.telegram', 'data': {'message': 'Cineva e la poarta!', 'data': {'photo': [{'file': '/config/www/snapshot.jpg', 'caption': 'Snapshot from Dahua VTO'}]}}}]}]

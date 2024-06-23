@@ -1,0 +1,152 @@
+- id: '1718375707610'
+  alias: apel_ledON
+  description: Când se primește apel de la outdoor station, se aprind ledurile; ledurile
+    se sting automat după 10 secunde
+  trigger:
+  - platform: event
+    event_type: dahua_vto
+    event_data:
+      Code: CallNoAnswered
+  condition: []
+  action:
+  - service: light.turn_on
+    target:
+      entity_id: light.shellyswitch25_3494546f088a_channel_2
+    data: {}
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 20
+      milliseconds: 0
+  - service_template: "{% if trigger.event.data.Code == 'CallFinished' %}\n  light.turn_off\n{%
+      endif %}\n"
+    target:
+      entity_id: light.shellyswitch25_3494546f088a_channel_2
+  - service: light.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.shellyswitch25_3494546f088a_channel_2
+  mode: single
+  ##########################################################################################################3
+- id: '1718483919826'
+  alias: New automation
+  description: ''
+  trigger:
+  - platform: event
+    event_type: dahua_vto
+    event_data:
+      Code: CallNoAnswered
+  condition: []
+  action:
+  - service: telegram_bot.send_photo
+    metadata: {}
+    data:
+      authentication: bearer_token
+      url: http://192.168.88.146/cgi-bin/snapshot.cgi
+      username: admin
+      password: piiapiia2002
+      target: 5895969058
+      caption: poarta
+  mode: single
+  ############################################################################################################
+  automation:
+  - alias: 'Dahua VTO Call Notification'
+    trigger:
+      platform: event
+      event_type: dahua_vto
+      event_data:
+        Code: BackKeyLight
+    action:
+      - service: camera.snapshot
+        data:
+          entity_id: camera.dahua_vto
+          filename: '/config/www/snapshot.jpg'
+      - delay: '00:00:02'
+      - service: notify.telegram
+        data:
+          message: "Cineva e la poarta!"
+          data:
+            photo:
+              - file: '/config/www/snapshot.jpg'
+                caption: 'Snapshot from Dahua VTO'
+
+  ############################################################################################################
+- id: '1718593352254'
+  alias: New automation
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.cam1
+  condition: []
+  action:
+  - service: light.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.bed_light
+  - service: light.toggle
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.bed_light
+  mode: single
+ ################################################################################################################ 
+- id: '1718907217205'
+  alias: Notificare
+  description: ''
+  trigger:
+  - platform: event
+    event_type: dahua_vto
+    event_data:
+      Code: CallNoAnswered
+  condition: []
+  action:
+  - service: telegram_bot.send_message
+    metadata: {}
+    data:
+      target: 5895969058
+      message: Cineva e la poarta
+  mode: single
+######################################################################################
+- alias: Dahua VTO All Events
+  mode: queued
+  trigger:
+    - platform: event
+      event_type: dahua_vto
+  action: []
+
+- alias: Dahua VTO Command Result
+  mode: queued
+  trigger:
+    - platform: event
+      event_type: dahua_vto
+  condition:
+    - condition: template
+      value_template: "{{ trigger.event.data.method is defined }}"
+  action: []
+
+- alias: Dahua VTO
+  mode: queued
+  trigger:
+    - platform: event
+      event_type: dahua_vto
+      event_data:
+        Code: BackKeyLight
+  action:
+    - choose:
+        - conditions: "{{ trigger.event.data.Data.State | int in [0, 1, 2, 5, 6] }}"
+          sequence: []
+        - conditions: "{{ trigger.event.data.Data.State | int == 8 }}"
+          sequence:
+            - service: timer.start
+              data:
+                entity_id: timer.door_lock
+                duration: 00:00:02 # VTO Unlock Period
+        - conditions: "{{ trigger.event.data.Data.State | int == 9 }}"
+          sequence: []
+        - conditions: "{{ trigger.event.data.Data.State | int == 11 }}"
+          sequence: []
+      default: []
+

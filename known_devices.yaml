@@ -1,0 +1,21 @@
+
+demo_paulus:
+  name: Paul
+  mac:
+  icon:
+  picture:
+  track: true
+
+demo_anne_therese:
+  name: Anna
+  mac:
+  icon:
+  picture:
+  track: true
+
+demo_home_boy:
+  name: Vasile
+  mac:
+  icon:
+  picture:
+  track: true

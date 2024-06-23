@@ -1,0 +1,50 @@
+# Fișierul demo_lights.yaml
+
+light:
+  - platform: demo
+    name: Living Room Light
+    state: off
+    brightness: 200
+    rgb_color: [255, 255, 255]
+
+  - platform: demo
+    name: Bedroom Light
+    state: off
+    brightness: 180
+    rgb_color: [255, 200, 100]
+
+  - platform: demo
+    name: Kitchen Light
+    state: off
+    brightness: 220
+    rgb_color: [0, 255, 0]
+
+  - platform: demo
+    name: Bathroom Light
+    state: off
+    brightness: 150
+    rgb_color: [0, 0, 255]
+
+  - platform: demo
+    name: Office Light
+    state: off
+    brightness: 210
+    rgb_color: [255, 0, 255]
+
+  - platform: demo
+    name: Dining Room Light
+    state: off
+    brightness: 190
+    rgb_color: [255, 255, 0]
+
+  - platform: demo
+    name: Hallway Light
+    state: off
+    brightness: 170
+    rgb_color: [100, 200, 255]
+
+  - platform: demo
+    name: Garage Light
+    state: off
+    brightness: 180
+    rgb_color: [200, 100, 50]
