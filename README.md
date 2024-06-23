@@ -2,7 +2,7 @@
 
 ### Adresa proiectului pe GitLab:
 
-https://gitlab.upt.ro/ion.cucu/home-assistant
+https://github.com/ion01/HomeAssistant.git
 
 
 ___
